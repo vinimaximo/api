@@ -1,0 +1,46 @@
+Estrutura Json para Inserir Usuariós Via API PHP (api.php)
+
+
+{
+"requisicao":"add",
+"nome":"Maria das Couves",
+"usuario":"mariac",
+"senha":"123654",
+"nivel":"admin"
+
+
+}
+
+Estrutura Json para Listar por nome ou po usuario os Usuariós Via API PHP (api.php)
+
+{
+"requisicao":"listar",
+"nome":"",
+"start":0,
+"limit":10
+
+}
+
+Estrutura Json para Atualizar por nome ou po usuario os Usuariós Via API PHP (api.php)
+
+{
+"requisicao":"editar",
+"nome":"Zé Delas",
+"usuario":"Zedla",
+"senha":"Delas",
+"nivel":"caixa",
+"id":1
+
+}
+
+
+
+{
+"requisicao":"excluir",
+"id":1
+}
+
+{
+"requisicao":"ativar",
+"id":1
+}
