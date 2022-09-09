@@ -44,3 +44,42 @@ Estrutura Json para Atualizar por nome ou po usuario os Usuariós Via API PHP (a
 "requisicao":"ativar",
 "id":1
 }
+
+--------------------------------------------------------------------------------------
+
+EVENTOS
+
+
+{
+"requisicao":"adicionar",
+"nome":"Douglas da Silva",
+"data":"19/09/2001",
+"capacidade":2,
+"usuarios_id":1
+
+
+
+}
+
+{
+"requisicao":"list",
+"nome":"",
+"start":0,
+"limit":10
+
+}
+
+{
+"requisicao":"edit",
+"nome":"josé",
+"data":"19/09/2003",
+"capacidade":1,
+"id":1
+
+}
+
+
+{
+    "requisicao":"ativar",
+    "id":3
+}
