@@ -4,33 +4,31 @@
     //Variavel que recebe o conteudo da requisição do app decodificando-a (Json)
     $_POSTjson = json_decode(file_get_contents('php://input', true),true);
 
-    if($_POSTjson['requisicao']== 'adicionar'){
-        $query = $pdo->prepare("insert into eventos set nome =:nome, data=:data,capacidade=:capacidade,ativo= 1,usuarios_id=:usuarios_id");
-
-        $data_antiga = strtotime ($_POSTjson['data']);
-        $newdatetime = date('Y-m-d H-i-s',$data_antiga );
-
-        $query ->bindValue(":nome", $_POSTjson['nome']);
-        $query ->bindValue(":data", $newdatetime);
-        $query ->bindValue(":capacidade", $_POSTjson['capacidade']);   
-        $query ->bindValue(":usuarios_id", $_POSTjson['usuarios_id']);  
-        
-        $query->execute();
-        $id = $pdo->lastInsertId();
-
-        if ($query) {
-          $result = json_encode(array('success'=>true,'id'=>$id));
-         
-        }else{
-          $result = json_encode(array('false'=>true,'msg'=>'Falha ao Inserir o Evento!!'));
-
-        }
-
-       
-        echo $result;  
-      // Final requisição add  
-
-    }else if($_POSTjson['requisicao'] == 'list'){
+    if ($_POSTjson['requisicao'] == 'adicionar') { // Requisição para Add
+      try {
+          // Preparando Query
+          $query = $pdo->prepare('insert into eventos set nome = :nome, data = :data, capacidade = :capacidade, ativo = :ativo, usuarios_id = :usuarios_id');
+  
+          // Passando o valor dos parametros da query
+          $query->bindValue(":nome", $_POSTjson['nome']);
+          $query->bindValue(":data", $_POSTjson['data']);
+          $query->bindValue(":capacidade", $_POSTjson['capacidade']);
+          $query->bindValue(":ativo", $_POSTjson['ativo']);
+          $query->bindValue(":usuarios_id", $_POSTjson['usuarios_id']);
+  
+          // Executando Query
+          $query->execute();
+  
+          // Pegando ultimo id criado
+          $id = $pdo->lastInsertId();
+  
+          // Retornando
+          echo json_encode(($query) ? array('success' => true, 'id' => $id) : array('success' => false, 'msg' => 'Falha ao inserir o evento'));
+      } catch (\Throwable $e) {
+          // Entregando JSON ERRO
+          echo json_encode(array('success' => false, 'msg' => $e));
+      }
+  }else if($_POSTjson['requisicao'] == 'list'){
       if($_POSTjson['nome'] == ''){
           $query = $pdo->query("SELECT * FROM eventos ORDER BY id DESC LIMIT $_POSTjson[start], $_POSTjson[limit]");
       }else{
