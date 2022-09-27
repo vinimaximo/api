@@ -30,7 +30,7 @@ class Evento{
         }
     }
     public function setData($dados){
-        $this->setId($dados['id']);
+        $this->setId($dados['id']); 
         $this->setNome($dados['nome']);
         $this->setdata_evento($dados['data_evento']);
         $this->setcapacidade($dados['capacidade']);
