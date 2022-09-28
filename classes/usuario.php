@@ -79,14 +79,14 @@ class Usuario{
     }
     public function update() : bool{
         $sql = new Sql();
-        $res = $sql->query("UPDATE usuarios SET nome= :nome, senha = :senha, nivel = :nivel, 
-        avatar = :avatar WHERE id = :id",
+        $res = $sql->querySql("UPDATE usuarios SET nome = :nome, senha = :senha, nivel = :nivel
+        WHERE id = :id",
         array(
             ":nome"=>$this->getNome(),
             ":id"=>$this->getId(),
             ":senha"=>md5($this->getSenha()),
-            ":nivel"=>$this->getNivel(),
-            ":avatar"=>$this->getAvatar()
+            ":nivel"=>$this->getNivel()
+            
         ));
         if($res){
             return true; 

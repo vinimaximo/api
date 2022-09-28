@@ -59,7 +59,7 @@ else if($postjson['requisicao']=='editar'){
     $user->setId($postjson['id']);
     $user->setSenha($postjson['senha']);
     $user->setNivel($postjson['nivel']);
-    $user->setAvatar($postjson['avatar']);
+    
     if ($user->update()){
         $result = json_encode(array('success'=>true, 'msg'=>"Deu tudo certo com alteração!"));
     }else{
