@@ -59,7 +59,7 @@ class Evento{
         $res = $sql->select("CALL sp_eve_insert(:nome, :data_evento, :capacidade, :usuarios_id , :avatar)",
         array(
             ":nome"=>$this->getNome(),
-            ":data_evento"=>md5($this->getdata_evento()),
+            ":data_evento"=>$this->getdata_evento(),
             ":capacidade"=>$this->getcapacidade(),
             ":usuarios_id"=>$this->getusuarios_id(),
             ":avatar"=>$this->getAvatar()
